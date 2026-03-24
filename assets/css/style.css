@@ -7,36 +7,36 @@ html {
 
 /* Root Variables - Clean Trendy Palette */
 :root {
-  /* Main 5-Color Trendy Palette */
-  --primary-color: #ffffff; /* Pure White - Main */
-  --secondary-color: #7678ef; /* Vibrant Indigo - Secondary */
-  --accent-color: #1a1a1a; /* Deep Charcoal - Accent */
-  --success-color: #00d4aa; /* Modern Teal - Success/Actions */
-  --neutral-color: #f5f5f7; /* Light Gray - Backgrounds */
+  /* Main Palette */
+  --primary-color: #0B0F1A; /* Deep dark (вместо белого фона) */
+  --secondary-color: #6366F1; /* Более современный indigo */
+  --accent-color: #0F172A; /* Глубокий синий вместо серого */
+  --success-color: #00F5D4; /* Неоновый teal */
+  --neutral-color: #111827; /* Карточки / surface */
 
-  /* Semantic Color Mappings */
-  --white-color: var(--primary-color);
-  --dark-color: var(--accent-color);
-  --light-color: var(--neutral-color);
-  --muted-color: #8e8e93; /* Medium Gray for text */
+  /* Semantic */
+  --white-color: #F9FAFB; /* Текст */
+  --dark-color: #020617;
+  --light-color: #1F2933;
+  --muted-color: #9CA3AF;
 
-  /* Gradient Combinations */
-  --gradient-start: var(--secondary-color);
-  --gradient-end: var(--success-color);
+  /* Gradient */
+  --gradient-start: #6366F1;
+  --gradient-end: #00F5D4;
 
-  /* Component-specific Variables */
-  --footer-bg: var(--neutral-color);
-  --card-shadow: rgba(94, 96, 206, 0.08);
-  --hero-blob-1: rgba(94, 96, 206, 0.12);
-  --hero-blob-2: rgba(0, 212, 170, 0.1);
+  /* Components */
+  --footer-bg: #020617;
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --hero-blob-1: rgba(99, 102, 241, 0.25);
+  --hero-blob-2: rgba(0, 245, 212, 0.2);
 
-  /* Legacy color mappings for backward compatibility */
-  --primary-red: var(--success-color);
-  --secondary-red: var(--secondary-color);
-  --light-pink: var(--neutral-color);
-  --charcoal: var(--accent-color);
-  --deep-black: var(--dark-color);
-
+  /* Legacy */
+  --primary-red: #00F5D4;
+  --secondary-red: #6366F1;
+  --light-pink: #111827;
+  --charcoal: #0F172A;
+  --deep-black: #020617;
+}
   /* Typography */
   --font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
