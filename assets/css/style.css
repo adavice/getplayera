@@ -11,7 +11,7 @@ html {
   --primary-color: #ffffff; /* Pure White - Main */
   --secondary-color: #EC4899; /* Vibrant Indigo - Secondary */
   --accent-color: #1a1a1a; /* Deep Charcoal - Accent */
-  --success-color: #00d4aa; /* Modern Teal - Success/Actions */
+  --success-color: #ffc107; /* Modern Teal - Success/Actions */
   --neutral-color: #f5f5f7; /* Light Gray - Backgrounds */
 
   /* Semantic Color Mappings */
