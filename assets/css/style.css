@@ -1431,7 +1431,7 @@ a[href*="cat=Kids"] .genre-icon {
 }
 
 a[href*="cat=Sports"] .genre-icon {
-  background: linear-gradient(135deg, #28a745, #198754);
+  background: linear-gradient(135deg, #28a745, #ffc107);
 }
 
 a[href*="cat=Big%20kids"] .genre-icon {
@@ -1447,7 +1447,7 @@ a[href*="cat=Educational"] .genre-icon {
 }
 
 a[href*="cat=Adventure"] .genre-icon {
-  background: linear-gradient(135deg, #198754, #157347);
+  background: linear-gradient(135deg, #ffc107, #157347);
 }
 
 a[href*="cat=Young%20Kids"] .genre-icon {
