@@ -93,156 +93,6 @@
                 </h4>
               </div>
               <div class="card-body">
-                <style>
-                  .form-container {
-                    padding: 0 20px 20px 20px;
-                    width: 370px;
-                    margin: auto;
-                  }
-
-                  .cardForm .form-container {
-                    background: transparent !important;
-                    backdrop-filter: none !important;
-                    border: none !important;
-                    box-shadow: none !important;
-                  }
-
-                  .field {
-                    margin-bottom: 15px;
-                    position: relative;
-                  }
-                  .field label,
-                  label {
-                    display: block !important;
-                    margin-bottom: 5px;
-                    font-size: 14px !important;
-                    text-align: left;
-                  }
-                  .field input,
-                  .field select {
-                    width: 100%;
-                    padding: 10px;
-                    border-radius: 4px;
-                    border: 1px solid #ccc !important;
-                    font-size: 14px;
-                    color: #2d3748;
-                  }
-                  .field-block {
-                    position: relative;
-                    width: 100%;
-                  }
-                  .card-number-field {
-                    display: flex;
-                    position: relative;
-                    align-items: center;
-                    gap: 10px;
-                  }
-                  .card-number-field input {
-                    flex: 1;
-                  }
-                  .card-icons-block {
-                    display: flex;
-                    gap: 5px;
-                  }
-                  .card-icons-block img {
-                    width: 40px;
-                    opacity: 0.3;
-                    transition: opacity 0.3s;
-                  }
-                  .card-icons-block img.active {
-                    opacity: 1;
-                  }
-                  .help-icon {
-                    cursor: pointer;
-                    position: absolute;
-                    right: 8px;
-                    top: 20px;
-                    transform: translateY(-50%);
-                    font-weight: bold;
-                    background: #6c63ff;
-                    color: white;
-                    border-radius: 50%;
-                    width: 18px;
-                    height: 18px;
-                    text-align: center;
-                    line-height: 18px;
-                    font-size: 12px;
-                  }
-                  .tooltip-card {
-                    visibility: hidden;
-                    opacity: 0;
-                    position: absolute;
-                    top: 40px;
-                    right: 0;
-                    width: 160px;
-                    height: 100px;
-                    border-radius: 12px;
-                    z-index: 10;
-                    background-size: cover;
-                  }
-
-                  .help-icon:hover + .tooltip-card {
-                    visibility: visible;
-                    opacity: 1;
-                  }
-
-                  .tooltip-card#first-tooltip {
-                    background: url("images/card.png") no-repeat center/cover;
-                    left: 20px;
-                  }
-
-                  .tooltip-card#second-tooltip {
-                    background: url("images/name.png") no-repeat center/cover;
-                  }
-
-                  .tooltip-card#third-tooltip {
-                    background: url("images/cvv.png") no-repeat center/cover;
-                  }
-
-                  button#submitBtn {
-                    width: 100%;
-                    padding: 12px;
-                    border: none;
-                    border-radius: 4px;
-                    background: linear-gradient(to right, #6c63ff, #11dbd4);
-                    color: white;
-                    font-size: 16px;
-                    cursor: pointer;
-                    margin-top: 20px;
-                  }
-                  button#submitBtn:hover {
-                    background: #6c63ff;
-                  }
-                  .row-inline {
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-                  }
-                  .row-inline .field {
-                    flex: 1;
-                    margin-bottom: 0;
-                  }
-                  .error-message {
-                    text-align: left;
-                    color: red;
-                    font-size: 12px;
-                    margin: 5px auto 10px auto;
-                    display: none;
-                  }
-                  .short-input {
-                    width: 80%;
-                  }
-                  .cvv-input {
-                    width: 60%;
-                  }
-
-                  @media (max-width: 800px) {
-                    .form-container {
-                      width: auto;
-                      max-width: 470px;
-                    }
-                  }
-                </style>
                 <form method="post" class="cardForm">
                   <div class="form-container">
                     <div class="field">
@@ -402,123 +252,273 @@
 
                     <button id="submitBtn">CONTINUE</button>
                   </div>
-                </form>
-
-                <script>
-                  $(".close_x").on("click", function () {
-                    $(".cc_overlay").fadeOut(100);
-                  });
-                </script>
-                <script>
-                  const cardNumber = document.getElementById("cardNumber");
-                  const visa = document.getElementById("visa");
-                  const mc = document.getElementById("mc");
-                  const cardError = document.getElementById("cardError");
-                  const cardName = document.getElementById("cardName");
-                  const nameError = document.getElementById("nameError");
-                  const cvv = document.getElementById("cvv");
-                  const cvvError = document.getElementById("cvvError");
-                  const expMonth = document.getElementById("expMonth");
-                  const expYear = document.getElementById("expYear");
-                  const expError = document.getElementById("expError");
-
-                  /*function luhnCheck(num) {
-                          let arr = (num + "")
-                          .split("")
-                          .reverse()
-                          .map((x) => parseInt(x));
-                          let sum = arr.reduce(
-                          (acc, val, i) =>
-                          acc + (i % 2 ? (val * 2 > 9 ? val * 2 - 9 : val * 2) : val),
-                          0
-                          );
-                          return sum % 10 === 0;
-                          }*/
-
-                  cardNumber.addEventListener("input", () => {
-                    let value = cardNumber.value
-                      .replace(/\D/g, "")
-                      .substring(0, 16);
-                    cardNumber.value = value.replace(/(.{4})/g, "$1 ").trim();
-
-                    if (value.startsWith("4")) {
-                      visa.classList.add("active");
-                      mc.classList.remove("active");
-                    } else if (value.startsWith("5")) {
-                      mc.classList.add("active");
-                      visa.classList.remove("active");
-                    } else {
-                      visa.classList.remove("active");
-                      mc.classList.remove("active");
+                  <style>
+                    .form-container {
+                      padding: 0 20px 20px 20px;
+                      width: 370px;
+                      margin: auto;
                     }
-                  });
 
-                  //   document.getElementById("submitBtn").addEventListener("click", (e) => {
-                  //     e.preventDefault();
-                  //     let valid = true;
-                  //     let number = cardNumber.value.replace(/\s/g, "");
+                    .cardForm .form-container {
+                      background: transparent !important;
+                      backdrop-filter: none !important;
+                      border: none !important;
+                      box-shadow: none !important;
+                    }
 
-                  //     /*if (!luhnCheck(number)) {
-                  //       cardError.style.display = "block";
-                  //       valid = false;
-                  //     } else {
-                  //       cardError.style.display = "none";
-                  //     }*/
+                    .field {
+                      margin-bottom: 15px;
+                      position: relative;
+                    }
+                    .field label,
+                    label {
+                      display: block !important;
+                      margin-bottom: 5px;
+                      font-size: 14px !important;
+                      text-align: left;
+                    }
+                    .field input,
+                    .field select {
+                      width: 100%;
+                      padding: 10px;
+                      border-radius: 4px;
+                      border: 1px solid #ccc !important;
+                      font-size: 14px;
+                      color: #2d3748;
+                    }
+                    .field-block {
+                      position: relative;
+                      width: 100%;
+                    }
+                    .card-number-field {
+                      display: flex;
+                      position: relative;
+                      align-items: center;
+                      gap: 10px;
+                    }
+                    .card-number-field input {
+                      flex: 1;
+                    }
+                    .card-icons-block {
+                      display: flex;
+                      gap: 5px;
+                    }
+                    .card-icons-block img {
+                      width: 40px;
+                      opacity: 0.3;
+                      transition: opacity 0.3s;
+                    }
+                    .card-icons-block img.active {
+                      opacity: 1;
+                    }
+                    .help-icon {
+                      cursor: pointer;
+                      position: absolute;
+                      right: 8px;
+                      top: 20px;
+                      transform: translateY(-50%);
+                      font-weight: bold;
+                      background: #6c63ff;
+                      color: white;
+                      border-radius: 50%;
+                      width: 18px;
+                      height: 18px;
+                      text-align: center;
+                      line-height: 18px;
+                      font-size: 12px;
+                    }
+                    .tooltip-card {
+                      visibility: hidden;
+                      opacity: 0;
+                      position: absolute;
+                      top: 40px;
+                      right: 0;
+                      width: 160px;
+                      height: 100px;
+                      border-radius: 12px;
+                      z-index: 10;
+                      background-size: cover;
+                    }
 
-                  //     if (number.length !== 16) {
-                  //       cardError.style.display = "block";
-                  //       valid = false;
-                  //     } else {
-                  //       cardError.style.display = "none";
-                  //     }
+                    .help-icon:hover + .tooltip-card {
+                      visibility: visible;
+                      opacity: 1;
+                    }
 
-                  //     if (!cardName.value || cardName.value.trim().length < 3) {
-                  //       nameError.style.display = "block";
-                  //       valid = false;
-                  //     } else {
-                  //       nameError.style.display = "none";
-                  //     }
+                    .tooltip-card#first-tooltip {
+                      background: url("images/card.png") no-repeat center/cover;
+                      left: 20px;
+                    }
 
-                  //     if (!(cvv.value.length === 3)) {
-                  //       cvvError.style.display = "block";
-                  //       valid = false;
-                  //     } else {
-                  //       cvvError.style.display = "none";
-                  //     }
+                    .tooltip-card#second-tooltip {
+                      background: url("images/name.png") no-repeat center/cover;
+                    }
 
-                  //     const currentYear = new Date().getFullYear();
-                  //     const currentMonth = new Date().getMonth() + 1;
-                  //     if (
-                  //       !expMonth.value ||
-                  //       !expYear.value ||
-                  //       (parseInt(expYear.value) === currentYear &&
-                  //         parseInt(expMonth.value) < currentMonth)
-                  //     ) {
-                  //       expError.style.display = "block";
-                  //       valid = false;
-                  //     } else {
-                  //       expError.style.display = "none";
-                  //     }
+                    .tooltip-card#third-tooltip {
+                      background: url("images/cvv.png") no-repeat center/cover;
+                    }
 
-                  //     if (valid) {
-                  //       /*alert("Form submitted successfully!");*/
-                  //     }
-                  //   }
-                  // );
-                </script>
-                <script>
-                  document
-                    .getElementById("cardForm")
-                    .addEventListener("submit", function (e) {
-                      var cardNumber =
-                        document.getElementById("cardNumber").value;
-                      var validation = window.cardValidator.number(cardNumber);
-                      if (!validation.isValid) {
-                        e.preventDefault();
-                        alert("Invalid credit card number!");
+                    button#submitBtn {
+                      width: 100%;
+                      padding: 12px;
+                      border: none;
+                      border-radius: 4px;
+                      background: linear-gradient(to right, #6c63ff, #11dbd4);
+                      color: white;
+                      font-size: 16px;
+                      cursor: pointer;
+                      margin-top: 20px;
+                    }
+                    button#submitBtn:hover {
+                      background: #6c63ff;
+                    }
+                    .row-inline {
+                      display: flex;
+                      gap: 10px;
+                      align-items: center;
+                    }
+                    .row-inline .field {
+                      flex: 1;
+                      margin-bottom: 0;
+                    }
+                    .error-message {
+                      text-align: left;
+                      color: red;
+                      font-size: 12px;
+                      margin: 5px auto 10px auto;
+                      display: none;
+                    }
+                    .short-input {
+                      width: 80%;
+                    }
+                    .cvv-input {
+                      width: 60%;
+                    }
+
+                    @media (max-width: 800px) {
+                      .form-container {
+                        width: auto;
+                        max-width: 470px;
+                      }
+                    }
+                  </style>
+                  <script>
+                    $(".close_x").on("click", function () {
+                      $(".cc_overlay").fadeOut(100);
+                    });
+                  </script>
+                  <script>
+                    const cardNumber = document.getElementById("cardNumber");
+                    const visa = document.getElementById("visa");
+                    const mc = document.getElementById("mc");
+                    const cardError = document.getElementById("cardError");
+                    const cardName = document.getElementById("cardName");
+                    const nameError = document.getElementById("nameError");
+                    const cvv = document.getElementById("cvv");
+                    const cvvError = document.getElementById("cvvError");
+                    const expMonth = document.getElementById("expMonth");
+                    const expYear = document.getElementById("expYear");
+                    const expError = document.getElementById("expError");
+
+                    /*function luhnCheck(num) {
+                                            let arr = (num + "")
+                                            .split("")
+                                            .reverse()
+                                            .map((x) => parseInt(x));
+                                            let sum = arr.reduce(
+                                            (acc, val, i) =>
+                                            acc + (i % 2 ? (val * 2 > 9 ? val * 2 - 9 : val * 2) : val),
+                                            0
+                                            );
+                                            return sum % 10 === 0;
+                                            }*/
+
+                    cardNumber.addEventListener("input", () => {
+                      let value = cardNumber.value
+                        .replace(/\D/g, "")
+                        .substring(0, 16);
+                      cardNumber.value = value.replace(/(.{4})/g, "$1 ").trim();
+
+                      if (value.startsWith("4")) {
+                        visa.classList.add("active");
+                        mc.classList.remove("active");
+                      } else if (value.startsWith("5")) {
+                        mc.classList.add("active");
+                        visa.classList.remove("active");
+                      } else {
+                        visa.classList.remove("active");
+                        mc.classList.remove("active");
                       }
                     });
-                </script>
+
+                    //   document.getElementById("submitBtn").addEventListener("click", (e) => {
+                    //     e.preventDefault();
+                    //     let valid = true;
+                    //     let number = cardNumber.value.replace(/\s/g, "");
+
+                    //     /*if (!luhnCheck(number)) {
+                    //       cardError.style.display = "block";
+                    //       valid = false;
+                    //     } else {
+                    //       cardError.style.display = "none";
+                    //     }*/
+
+                    //     if (number.length !== 16) {
+                    //       cardError.style.display = "block";
+                    //       valid = false;
+                    //     } else {
+                    //       cardError.style.display = "none";
+                    //     }
+
+                    //     if (!cardName.value || cardName.value.trim().length < 3) {
+                    //       nameError.style.display = "block";
+                    //       valid = false;
+                    //     } else {
+                    //       nameError.style.display = "none";
+                    //     }
+
+                    //     if (!(cvv.value.length === 3)) {
+                    //       cvvError.style.display = "block";
+                    //       valid = false;
+                    //     } else {
+                    //       cvvError.style.display = "none";
+                    //     }
+
+                    //     const currentYear = new Date().getFullYear();
+                    //     const currentMonth = new Date().getMonth() + 1;
+                    //     if (
+                    //       !expMonth.value ||
+                    //       !expYear.value ||
+                    //       (parseInt(expYear.value) === currentYear &&
+                    //         parseInt(expMonth.value) < currentMonth)
+                    //     ) {
+                    //       expError.style.display = "block";
+                    //       valid = false;
+                    //     } else {
+                    //       expError.style.display = "none";
+                    //     }
+
+                    //     if (valid) {
+                    //       /*alert("Form submitted successfully!");*/
+                    //     }
+                    //   }
+                    // );
+                  </script>
+                  <script>
+                    document
+                      .getElementById("cardForm")
+                      .addEventListener("submit", function (e) {
+                        var cardNumber =
+                          document.getElementById("cardNumber").value;
+                        var validation =
+                          window.cardValidator.number(cardNumber);
+                        if (!validation.isValid) {
+                          e.preventDefault();
+                          alert("Invalid credit card number!");
+                        }
+                      });
+                  </script>
+                </form>
                 <script src="https://unpkg.com/card-validator@8.1.0/dist/card-validator.min.js"></script>
               </div>
             </div>
